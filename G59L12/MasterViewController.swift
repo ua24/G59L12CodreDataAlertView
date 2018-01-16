@@ -44,7 +44,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 		let newEvent = Event(context: context)
 		     
 		// If appropriate, configure the new managed object.
+		let myTime: TimeInterval = 0
 		newEvent.timestamp = Date()
+		newEvent.name = "pusya"
 
 		// Save the context.
 		do {
