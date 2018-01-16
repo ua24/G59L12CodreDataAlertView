@@ -5,9 +5,14 @@
         <attribute name="timestamp" optional="YES" attributeType="Date">
             <userInfo/>
         </attribute>
+        <relationship name="usedWeapons" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Weapon" syncable="YES"/>
         <userInfo/>
     </entity>
+    <entity name="Weapon" representedClassName="Weapon" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="Event" positionX="261" positionY="189" width="128" height="75"/>
+        <element name="Event" positionX="367" positionY="153" width="128" height="88"/>
+        <element name="Weapon" positionX="99" positionY="237" width="128" height="58"/>
     </elements>
 </model>

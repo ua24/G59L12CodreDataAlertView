@@ -40,23 +40,47 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
 	@objc
 	func insertNewObject(_ sender: Any) {
-		let context = self.fetchedResultsController.managedObjectContext
-		let newEvent = Event(context: context)
-		     
-		// If appropriate, configure the new managed object.
-		let myTime: TimeInterval = 0
-		newEvent.timestamp = Date()
-		newEvent.name = "pusya"
-
-		// Save the context.
-		do {
-		    try context.save()
-		} catch {
-		    // Replace this implementation with code to handle the error appropriately.
-		    // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-		    let nserror = error as NSError
-		    fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+		
+		let alert = UIAlertController(title: "Add object", message: "write name for your new obj", preferredStyle: .alert)
+		alert.addTextField { (textField) in
+			textField.placeholder = "shoto tam takoe"
+			
 		}
+		let cancellAct = UIAlertAction(title: "Cancel", style: .cancel) { (act) in
+			print("pew-pew")
+		}
+
+		alert.addAction(cancellAct)
+		
+		let okllAct = UIAlertAction(title: "Add", style: .default) { (act) in
+			let context = self.fetchedResultsController.managedObjectContext
+			let newEvent = Event(context: context)
+			
+			// If appropriate, configure the new managed object.
+			//		let myTime: TimeInterval = 0
+			newEvent.timestamp = Date()
+			newEvent.name = alert.textFields?.first?.text // "pusya"
+			
+			// Save the context.
+			do {
+				try context.save()
+			} catch {
+				// Replace this implementation with code to handle the error appropriately.
+				// fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+				let nserror = error as NSError
+				fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+			}
+		}
+		
+		alert.addAction(okllAct)
+		
+		present(alert, animated: true) {
+			
+		}
+		
+		
+		
+		
 	}
 
 	// MARK: - Segues
